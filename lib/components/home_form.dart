@@ -1,7 +1,22 @@
 import 'package:flutter/material.dart';
 
-class HomeForm extends StatelessWidget {
+class HomeForm extends StatefulWidget {
   const HomeForm({Key? key}) : super(key: key);
+
+  @override
+  State<HomeForm> createState() => _HomeFormState();
+}
+
+class _HomeFormState extends State<HomeForm> {
+  late var isworking;
+  late var workingmessage;
+
+  @override
+  void initState() {
+    isworking = false;
+    workingmessage = "눌러서 출근";
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -56,11 +71,23 @@ class HomeForm extends StatelessWidget {
           height: 10,
         ),
         TextButton(
-            onPressed: () {
-              Navigator.pushNamed(context, "/login");
-            },
-            child: Text("눌러서 퇴근"))
+          onPressed: toggleSelect,
+          child: Text("$workingmessage"),
+        ),
       ],
     );
+  }
+
+  void toggleSelect() {
+    if (!isworking) {
+      isworking = true;
+      workingmessage = "눌러서 퇴근";
+    } else {
+      isworking = false;
+      workingmessage = "눌러서 출근";
+    }
+    setState(() {
+
+    });
   }
 }
