@@ -67,6 +67,5 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-// TODO:출근 페이지를 추가하고 출근 누르면 콜 대기중으로 이동하도록 -> 페이지를 하나로 하고 버튼 토글 -> 출근일 때 다이얼로그 뜰 수 있게
 // TODO:drawer 메뉴별로 페이지 추가하기
 // TODO:drawer에 이름 번호 빼고 사진을 넣을까?
