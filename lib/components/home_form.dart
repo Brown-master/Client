@@ -1,22 +1,17 @@
 import 'package:flutter/material.dart';
 
-class HomeForm extends StatefulWidget {
+class HomeForm extends StatelessWidget {
   const HomeForm({Key? key}) : super(key: key);
 
-  @override
-  State<HomeForm> createState() => _HomeFormState();
-}
-
-class _HomeFormState extends State<HomeForm> {
-  late var isworking;
-  late var workingmessage;
-
-  @override
-  void initState() {
-    isworking = false;
-    workingmessage = "눌러서 출근";
-    super.initState();
-  }
+//  late var isworking;
+//  late var workingmessage;
+//
+//  @override
+//  void initState() {
+//    isworking = false;
+//    workingmessage = "눌러서 출근";
+//    super.initState();
+//  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,24 +65,24 @@ class _HomeFormState extends State<HomeForm> {
         SizedBox(
           height: 10,
         ),
-        TextButton(
-          onPressed: toggleSelect,
-          child: Text("$workingmessage"),
-        ),
+//       TextButton(
+//         onPressed: toggleSelect,
+//         child: Text("$workingmessage"),
+//       ),
       ],
     );
   }
 
-  void toggleSelect() {
-    if (!isworking) {
-      isworking = true;
-      workingmessage = "눌러서 퇴근";
-    } else {
-      isworking = false;
-      workingmessage = "눌러서 출근";
-    }
-    setState(() {
-
-    });
-  }
+//  void toggleSelect() {
+//    if (!isworking) {
+//      isworking = true;
+//      workingmessage = "눌러서 퇴근";
+//    } else {
+//      isworking = false;
+//      workingmessage = "눌러서 출근";
+//    }
+//    setState(() {
+//
+//    });
+//  }
 }
