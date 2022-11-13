@@ -19,31 +19,25 @@ class HomePage extends StatelessWidget {
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            UserAccountsDrawerHeader(
-                accountName:
-                    Text("브라운 석사", style: TextStyle(color: Colors.black)),
-                accountEmail: Text("차량번호 or 휴대폰번호",
-                    style: TextStyle(color: Colors.black)),
-                decoration: BoxDecoration(
-                  color: Colors.yellow,
-                  borderRadius: BorderRadius.circular(20),
-                )),
+//            UserAccountsDrawerHeader(
+//                accountName:
+//                    Text("브라운 석사", style: TextStyle(color: Colors.black)),
+//                accountEmail: Text("차량번호 or 휴대폰번호",
+//                    style: TextStyle(color: Colors.black)),
+//                decoration: BoxDecoration(
+//                  color: Colors.yellow,
+//                  borderRadius: BorderRadius.circular(20),
+//                )),
             ListTile(
-              leading: Icon(
-                Icons.home,
-                color: Colors.black
-              ),
+              leading: Icon(Icons.home, color: Colors.black),
               title: Text('내 정보'),
-              onTap: (){},
+              onTap: () {},
               trailing: Icon(Icons.arrow_forward),
             ),
             ListTile(
-              leading: Icon(
-                  Icons.history,
-                  color: Colors.black
-              ),
+              leading: Icon(Icons.history, color: Colors.black),
               title: Text('견인 기록'),
-              onTap: (){},
+              onTap: () {},
               trailing: Icon(Icons.arrow_forward),
             )
           ],
