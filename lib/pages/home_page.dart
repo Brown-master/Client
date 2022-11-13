@@ -39,6 +39,11 @@ class HomePage extends StatelessWidget {
               title: Text('견인 기록'),
               onTap: () {},
               trailing: Icon(Icons.arrow_forward),
+            ),
+            ListTile(
+              leading: Icon(Icons.logout, color: Colors.black),
+              title: Text('로그아웃'),
+              onTap: () {},
             )
           ],
         ),
