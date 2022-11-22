@@ -242,6 +242,18 @@ class _RegisterFormState extends State<RegisterForm> {
           SizedBox(
             height: 20,
           ),
+
+          TextButton(
+            onPressed: () {
+              /// 네비게이터로 화면 이동, routes의 이름을 적어 이동한다
+              Navigator.pop(context);
+            },
+            child: Text("취소"),
+          ),
+
+          SizedBox(
+            height: 20,
+          ),
         ],
       ),
     );
