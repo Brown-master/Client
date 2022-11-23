@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ui_repository/pages/home_page.dart';
 import 'package:ui_repository/pages/login_page.dart';
 import 'package:ui_repository/pages/register_page.dart';
-import 'package:ui_repository/pages/info_page.dart';
+import 'package:ui_repository/pages/accident_info_page.dart';
 import 'firebase/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 
