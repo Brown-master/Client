@@ -31,7 +31,9 @@ class HomePage extends StatelessWidget {
             ListTile(
               leading: Icon(Icons.home, color: Colors.black),
               title: Text('내 정보'),
-              onTap: () {},
+              onTap: () {
+                _showUserInfo(context);
+              },
               trailing: Icon(Icons.arrow_forward),
             ),
             ListTile(
@@ -43,7 +45,9 @@ class HomePage extends StatelessWidget {
             ListTile(
               leading: Icon(Icons.logout, color: Colors.black),
               title: Text('로그아웃'),
-              onTap: () {},
+              onTap: () {
+                Navigator.pushNamed(context, '/login');
+              },
             )
           ],
         ),
@@ -65,6 +69,35 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
+
+  Future<dynamic> _showUserInfo(BuildContext context) {
+    return showDialog(
+        context: context,
+        //barrierDismissible - Dialog를 제외한 다른 화면 터치 x
+        barrierDismissible: false,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            // RoundedRectangleBorder - Dialog 화면 모서리 둥글게 조절
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0)),
+            //Dialog Main Title
+            title: Column(
+              children: <Widget>[new Text("내 정보 출력단")],
+            ),
+            //
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text("닫기"),
+                ),
+              ],
+            ),
+          );
+        });
+  }
 }
-// TODO:drawer 메뉴별로 페이지 추가하기
-// TODO:drawer에 이름 번호 빼고 사진을 넣을까?
