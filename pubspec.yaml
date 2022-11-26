@@ -15,6 +15,7 @@ dependencies:
   firebase_core: ^2.2.0
   cloud_firestore:
   geolocator:
+  google_maps_flutter:
 
 dev_dependencies:
   flutter_test:
