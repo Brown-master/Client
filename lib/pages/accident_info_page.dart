@@ -7,21 +7,24 @@ class InfoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: ListView(
-        children: [
-          SizedBox(
-            height: 50,
-          ),
-          Logo("상세 사고 정보"),
-          SizedBox(
-            height: 10,
-          ),
-          InfoForm(), // ID, Password 입력 창
-        ],
-      ),
-    ));
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+          body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: ListView(
+          children: [
+            SizedBox(
+              height: 50,
+            ),
+            Logo("상세 사고 정보"),
+            SizedBox(
+              height: 10,
+            ),
+            InfoForm(), // ID, Password 입력 창
+          ],
+        ),
+      )),
+    );
   }
 }
