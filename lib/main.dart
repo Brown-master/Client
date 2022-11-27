@@ -5,6 +5,7 @@ import 'package:ui_repository/pages/register_page.dart';
 import 'package:ui_repository/pages/accident_info_page.dart';
 import 'firebase/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:ui_repository/pages/map_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Login App',
+      debugShowCheckedModeBanner: false,
       // 테마설정
       theme: ThemeData(
         /// 전체 TextButton 테마를 지정하면 모든 TextButton에 테마가 적용된다.
@@ -36,13 +38,15 @@ class MyApp extends StatelessWidget {
       ),
 
       /// 화면이동을 위해 route를 사용
-      initialRoute: "/login", // 초기 경로 설정
+      initialRoute: "/login",
+      // 초기 경로 설정
       routes: {
         // 경로 목록
         "/login": (context) => LoginPage(),
         "/home": (context) => HomePage(),
         "/register": (context) => RegisterPage(),
         "/info": (context) => InfoPage(),
+        "/map": (context) => MapPage()
       },
     );
   }
