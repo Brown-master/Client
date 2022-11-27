@@ -3,20 +3,14 @@ import 'package:flutter/material.dart';
 class HomeForm extends StatelessWidget {
   const HomeForm({Key? key}) : super(key: key);
 
-//  late var isworking;
-//  late var workingmessage;
-//
-//  @override
-//  void initState() {
-//    isworking = false;
-//    workingmessage = "눌러서 출근";
-//    super.initState();
-//  }
-
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
+        CircularProgressIndicator(),
+        SizedBox(
+          height: 50,
+        ),
         TextButton(
             onPressed: () {
               showDialog(
@@ -36,27 +30,30 @@ class HomeForm extends StatelessWidget {
                         ],
                       ),
                       //
-                      content: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          TextButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                              Navigator.pushNamed(context, "/info");
-                            },
-                            child: Text("수락"),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            child: Text("거절"),
-                          ),
-                        ],
+                      content: WillPopScope(
+                        onWillPop: () async => false,
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                                Navigator.pushNamed(context, "/info");
+                              },
+                              child: Text("수락"),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: Text("거절"),
+                            ),
+                          ],
+                        ),
                       ),
                     );
                   });
@@ -64,25 +61,8 @@ class HomeForm extends StatelessWidget {
             child: Text("팝업 테스트용 버튼(삭제예정)")),
         SizedBox(
           height: 10,
-        ),
-//       TextButton(
-//         onPressed: toggleSelect,
-//         child: Text("$workingmessage"),
-//       ),
+        )
       ],
     );
   }
-
-//  void toggleSelect() {
-//    if (!isworking) {
-//      isworking = true;
-//      workingmessage = "눌러서 퇴근";
-//    } else {
-//      isworking = false;
-//      workingmessage = "눌러서 출근";
-//    }
-//    setState(() {
-//
-//    });
-//  }
 }
