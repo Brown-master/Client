@@ -79,7 +79,9 @@ class _RegisterFormState extends State<RegisterForm> {
                 decoration: InputDecoration(
                     suffixIcon: IconButton(
                       icon: Icon(
-                        obscure_password ? Icons.visibility : Icons.visibility_off,
+                        obscure_password
+                            ? Icons.visibility
+                            : Icons.visibility_off,
                         color: Theme.of(context).primaryColorDark,
                       ),
                       onPressed: () {
@@ -129,7 +131,9 @@ class _RegisterFormState extends State<RegisterForm> {
                 decoration: InputDecoration(
                     suffixIcon: IconButton(
                       icon: Icon(
-                        obscure_password_check ? Icons.visibility : Icons.visibility_off,
+                        obscure_password_check
+                            ? Icons.visibility
+                            : Icons.visibility_off,
                         color: Theme.of(context).primaryColorDark,
                       ),
                       onPressed: () {

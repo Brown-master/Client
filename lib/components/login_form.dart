@@ -30,7 +30,7 @@ class _LoginFormState extends State<LoginForm> {
               TextFormField(
                 // ID, password 폼 공백이면 message 출력
                 validator: (value) =>
-                value!.isEmpty ? "올바른 이메일을 입력해주세요." : null,
+                    value!.isEmpty ? "올바른 이메일을 입력해주세요." : null,
 
                 // 힌트 문자나 여러가지 데코레이션 기능 추가
                 decoration: InputDecoration(
@@ -45,10 +45,10 @@ class _LoginFormState extends State<LoginForm> {
                       borderRadius: BorderRadius.circular(20),
                     ),
                     errorBorder: OutlineInputBorder(
-                      // 에러 발생 시 모양
+                        // 에러 발생 시 모양
                         borderRadius: BorderRadius.circular(20)),
                     focusedErrorBorder: OutlineInputBorder(
-                      // 에러 발생 후 포커스 되었을 경우 모양
+                        // 에러 발생 후 포커스 되었을 경우 모양
                         borderRadius: BorderRadius.circular(20))),
               )
             ],
@@ -68,7 +68,7 @@ class _LoginFormState extends State<LoginForm> {
               TextFormField(
                 // password 폼 공백이면 message 출력
                 validator: (value) =>
-                value!.isEmpty ? "올바른 비밀번호를 입력해주세요." : null,
+                    value!.isEmpty ? "올바른 비밀번호를 입력해주세요." : null,
 
                 // text가 Password일 경우 마킹 처리 true
                 obscureText: obscure,
@@ -77,7 +77,7 @@ class _LoginFormState extends State<LoginForm> {
                 decoration: InputDecoration(
                     suffixIcon: IconButton(
                       icon: Icon(
-                        obscure ? Icons.visibility:Icons.visibility_off,
+                        obscure ? Icons.visibility : Icons.visibility_off,
                         color: Theme.of(context).primaryColorDark,
                       ),
                       onPressed: () {
@@ -95,10 +95,10 @@ class _LoginFormState extends State<LoginForm> {
                       borderRadius: BorderRadius.circular(20),
                     ),
                     errorBorder: OutlineInputBorder(
-                      // 에러 발생 시 모양
+                        // 에러 발생 시 모양
                         borderRadius: BorderRadius.circular(20)),
                     focusedErrorBorder: OutlineInputBorder(
-                      // 에러 발생 후 포커스 되었을 경우 모양
+                        // 에러 발생 후 포커스 되었을 경우 모양
                         borderRadius: BorderRadius.circular(20))),
               )
             ],
