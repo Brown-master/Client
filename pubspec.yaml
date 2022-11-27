@@ -16,6 +16,8 @@ dependencies:
   cloud_firestore:
   geolocator:
   google_maps_flutter:
+  google_maps_flutter_web:
+  permission_handler:
 
 dev_dependencies:
   flutter_test:
