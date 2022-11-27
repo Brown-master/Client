@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:ui_repository/components/current_position.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class InfoForm extends StatefulWidget {
   const InfoForm({Key? key}) : super(key: key);
@@ -29,12 +28,10 @@ class _InfoFormState extends State<InfoForm> {
             if (snapshot.hasData) {
               return OutlinedButton(
                   onPressed: () {
-                    GoogleMap(
-                        initialCameraPosition: CameraPosition(
-                      target: LatLng(
-                          snapshot.data!.latitude, snapshot.data!.longitude),
-                      zoom: 18,
-                    ));
+                    Navigator.pushNamed(context, '/map',
+                        arguments: CurrentPositions(
+                            latitude: snapshot.data!.latitude,
+                            longtitude: snapshot.data!.longitude));
                   },
                   child: Text('지도'));
             } else if (snapshot.hasError) {
@@ -58,4 +55,11 @@ class _InfoFormState extends State<InfoForm> {
       ],
     );
   }
+}
+
+class CurrentPositions {
+  final double latitude;
+  final double longtitude;
+
+  CurrentPositions({required this.latitude, required this.longtitude});
 }
