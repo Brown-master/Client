@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ui_repository/pages/home_page.dart';
 import 'package:ui_repository/pages/login_page.dart';
-import 'package:ui_repository/pages/register_page.dart';
 import 'package:ui_repository/pages/accident_info_page.dart';
+import 'package:ui_repository/pages/tow_history_page.dart';
 import 'firebase/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:ui_repository/pages/map_page.dart';
@@ -44,9 +44,9 @@ class MyApp extends StatelessWidget {
         // 경로 목록
         "/login": (context) => LoginPage(),
         "/home": (context) => HomePage(),
-        "/register": (context) => RegisterPage(),
         "/info": (context) => InfoPage(),
-        "/map": (context) => MapPage()
+        "/map": (context) => MapPage(),
+        "/history": (context) => HistoryPage()
       },
     );
   }

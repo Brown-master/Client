@@ -40,7 +40,9 @@ class HomePage extends StatelessWidget {
               ListTile(
                 leading: Icon(Icons.history, color: Colors.black),
                 title: Text('견인 기록'),
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, '/history');
+                },
                 trailing: Icon(Icons.arrow_forward),
               ),
               ListTile(
