@@ -48,7 +48,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions web = FirebaseOptions(
     apiKey: 'AIzaSyB_Xvye8NAe4svZIBMdHWuyI81cob3VZWc',
-    appId: '1:436279056234:web:a84ec8784c2f46edf9f713',
+    appId: '1:436279056234:web:c8c8c35205de51f7f9f713',
     messagingSenderId: '436279056234',
     projectId: 'user-4a7c6',
     authDomain: 'user-4a7c6.firebaseapp.com',
@@ -57,7 +57,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyAmFQrAT6_xsWT7-dsMcbWNBO4gOEUbN8c',
-    appId: '1:436279056234:android:f3c64d5bb891feb9f9f713',
+    appId: '1:436279056234:android:250cc035d6123a38f9f713',
     messagingSenderId: '436279056234',
     projectId: 'user-4a7c6',
     storageBucket: 'user-4a7c6.appspot.com',
@@ -65,7 +65,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyBmzOctoHXhCMQnWOcdBTjjYg_qyiduK48',
-    appId: '1:436279056234:ios:36bfc902df949481f9f713',
+    appId: '1:436279056234:ios:953a73996b73aecdf9f713',
     messagingSenderId: '436279056234',
     projectId: 'user-4a7c6',
     storageBucket: 'user-4a7c6.appspot.com',

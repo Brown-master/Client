@@ -7,43 +7,7 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:436279056234:android:43d6730676a6b962f9f713",
-        "android_client_info": {
-          "package_name": "com.example.mainui"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "436279056234-ha0bh1kq2p5fbdiekmcvn7k03n01cnao.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAmFQrAT6_xsWT7-dsMcbWNBO4gOEUbN8c"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "436279056234-ha0bh1kq2p5fbdiekmcvn7k03n01cnao.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "436279056234-tlbd0mkmqf2r6c2nveon67427mrvn7rs.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.example.mainui"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:436279056234:android:f3c64d5bb891feb9f9f713",
+        "mobilesdk_app_id": "1:436279056234:android:250cc035d6123a38f9f713",
         "android_client_info": {
           "package_name": "com.example.ui_repository"
         }
@@ -67,10 +31,10 @@
               "client_type": 3
             },
             {
-              "client_id": "436279056234-tlbd0mkmqf2r6c2nveon67427mrvn7rs.apps.googleusercontent.com",
+              "client_id": "436279056234-jf51piplu0usb5i8a98nu6sovo8i7nve.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.mainui"
+                "bundle_id": "com.example.uiRepository"
               }
             }
           ]
