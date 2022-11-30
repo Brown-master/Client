@@ -107,18 +107,6 @@ class _LoginFormState extends State<LoginForm> {
             height: 20,
           ), // 텍스트 박스와 로그인 버튼 사이의 간격
 
-          TextButton(
-            onPressed: () {
-              /// 네비게이터로 화면 이동, routes의 이름을 적어 이동한다
-              Navigator.pushNamed(context, "/register");
-            },
-            child: Text("회원가입"),
-          ),
-
-          SizedBox(
-            height: 20,
-          ),
-
           // 로그인 버튼
           TextButton(
             onPressed: () {
