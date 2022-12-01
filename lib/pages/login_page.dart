@@ -2,6 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:ui_repository/components/login_form.dart';
 import 'package:ui_repository/components/logo_form.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+class AppState{
+  bool loading;
+  User? user;
+  AppState(this.loading,this.user);
+}
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -12,44 +20,84 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   late Future<bool> location;
-
-  @override
-  void initState() {
-    super.initState();
-    location = location_permission();
+  final app=AppState(false, null);
+  Widget build(BuildContext context){
+    if(app.loading)return _loading();
+    if(app.user==null)return _logIn();
+    return _main();
   }
-
-  @override
-  Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async => false,
-      child: Scaffold(
-          body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: ListView(
-          children: [
-            SizedBox(
-              height: 50,
-            ), // 상단과 로고 시작 사이의 간격
-            Logo("로그인"),
-            SizedBox(
-              height: 50,
-            ), // 로그인 글자와 ID 글자 사이의 간격
-            LoginForm(), // ID, Password 입력 창
-          ],
-        ),
-      )),
+  Widget _loading(){
+    return Scaffold(
+      appBar: AppBar(title: Text('loading...')),
+      body: Center(child: CircularProgressIndicator())
     );
   }
-}
+  Widget _logIn () {
+    return Scaffold(
+        appBar: AppBar(
+            title: Text('login page')
+        ),
+        body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                ElevatedButton(
+                    child: Text('login'),
+                    onPressed: () {
+                      _signIn();
+                    }
+                )
+              ],
+            )
+        )
+    );
+  }
+  Widget _main () {
+    return Scaffold(
+        appBar: AppBar(
+          title: Text('loginsss'),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.account_circle),
+              onPressed: () {
+                _signOut();
+              },
+            )
+          ],
+        ),
+        body: Center(child: Text('contents'))
+    );
+  }
+  Future<UserCredential> _signIn() async {
+    setState(() => app.loading = true);
+    final GoogleSignInAccount? googleSignInAccount = await GoogleSignIn().signIn();
+    final GoogleSignInAuthentication? googleSignInAuthentication =
+    await googleSignInAccount?.authentication;
 
-Future<bool> location_permission() async {
-  Map<Permission, PermissionStatus> status =
-      await [Permission.location].request(); // [] 권한배열에 권한을 작성
+    final AuthCredential credential = GoogleAuthProvider.credential(
+      accessToken: googleSignInAuthentication?.accessToken,
+      idToken: googleSignInAuthentication?.idToken,
+    );
 
-  if (await Permission.location.isGranted) {
-    return Future.value(true);
-  } else {
-    return Future.value(false);
+    return await FirebaseAuth.instance.signInWithCredential(credential);
+  }
+  void _signOut() async{
+    await GoogleSignIn().signOut();
+    // await _auth.signOut();
+    setState(() {
+      app.user = null;
+    });
   }
 }
+  Future<bool> location_permission() async {
+    Map<Permission, PermissionStatus> status =
+    await [Permission.location].request(); // [] 권한배열에 권한을 작성
+
+    if (await Permission.location.isGranted) {
+      return Future.value(true);
+    } else {
+      return Future.value(false);
+    }
+}
+
