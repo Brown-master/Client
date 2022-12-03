@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:async';
+import 'package:ui_repository/components/url.dart';
 
 class HistoryPage extends StatefulWidget {
   const HistoryPage({Key? key}) : super(key: key);
@@ -20,16 +21,19 @@ class _HistoryPageState extends State<HistoryPage> {
   }
 
   Future fetchAccident() async {
-    final response =
-        await http.get(Uri.parse('https://jsonplaceholder.typicode.com/todos'));
+    final response = await http.get(historyurl);
 
+    var list = [];
     if (response.statusCode == 200) {
-      this.setState(() {
-        data = jsonDecode(response.body);
-      });
+      String responseBody = utf8.decode(response.bodyBytes);
+      list = jsonDecode(responseBody);
     } else {
       throw Exception('Failed to load Accident');
     }
+
+    setState(() {
+      data = list;
+    });
   }
 
   @override
@@ -68,8 +72,7 @@ class _HistoryPageState extends State<HistoryPage> {
                             Text('userId: ${data[index]['userId'].toString()}'),
                             Text('id: ${data[index]['id'].toString()}'),
                             Text('title: ${data[index]['title']}'),
-                            Text(
-                                'completed: ${data[index]['completed'].toString()}'),
+                            Text('completed: ${data[index]['completed'].toString()}'),
                             SizedBox(
                               height: 50,
                             )
