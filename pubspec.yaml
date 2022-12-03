@@ -11,7 +11,7 @@ dependencies:
   cupertino_icons: ^1.0.2
 
   flutter_svg: ^1.0.0
-  firebase_core: ^2.2.0
+  firebase_core:
   cloud_firestore:
   geolocator:
   google_maps_flutter:
@@ -19,6 +19,7 @@ dependencies:
   permission_handler:
   firebase_auth:
   http:
+  google_sign_in:
 
 dev_dependencies:
   flutter_test:
@@ -30,3 +31,4 @@ flutter:
   # assets 경로 지정
   assets:
     - assets/images/logo.PNG
+    - assets/images/google.PNG

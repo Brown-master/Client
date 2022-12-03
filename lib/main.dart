@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:ui_repository/components/home_form.dart';
 import 'package:ui_repository/pages/home_page.dart';
 import 'package:ui_repository/pages/login_page.dart';
 import 'package:ui_repository/pages/accident_info_page.dart';
 import 'package:ui_repository/pages/tow_history_page.dart';
-import 'firebase/firebase_options.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:ui_repository/pages/map_page.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+import 'init.dart';
+
+void main() {
   runApp(const MyApp());
 }
 
@@ -30,7 +27,7 @@ class MyApp extends StatelessWidget {
         textButtonTheme: TextButtonThemeData(
             style: TextButton.styleFrom(
                 backgroundColor: Colors.yellow,
-                primary: Colors.black,
+                foregroundColor: Colors.black,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(30),
                 ),
@@ -38,7 +35,7 @@ class MyApp extends StatelessWidget {
       ),
 
       /// 화면이동을 위해 route를 사용
-      initialRoute: "/login",
+      initialRoute: "/accident",
       // 초기 경로 설정
       routes: {
         // 경로 목록
@@ -46,7 +43,9 @@ class MyApp extends StatelessWidget {
         "/home": (context) => HomePage(),
         "/info": (context) => InfoPage(),
         "/map": (context) => MapPage(),
-        "/history": (context) => HistoryPage()
+        "/history": (context) => HistoryPage(),
+        "/init": (context) => Init(),
+        "/accident": (context) => HomeForm()
       },
     );
   }

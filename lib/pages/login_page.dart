@@ -1,5 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:ui_repository/components/login_form.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:ui_repository/components/logo_form.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -30,12 +31,12 @@ class _LoginPageState extends State<LoginPage> {
           children: [
             SizedBox(
               height: 50,
-            ), // 상단과 로고 시작 사이의 간격
+            ),
             Logo("로그인"),
             SizedBox(
               height: 50,
-            ), // 로그인 글자와 ID 글자 사이의 간격
-            LoginForm(), // ID, Password 입력 창
+            ),
+            makeSignInButton("assets/images/google.PNG"),
           ],
         ),
       )),
@@ -52,4 +53,35 @@ Future<bool> location_permission() async {
   } else {
     return Future.value(false);
   }
+}
+
+TextButton makeSignInButton(String imageaddress) {
+  return TextButton(
+    onPressed: () {
+      if (imageaddress == "assets/images/google.PNG") {
+        signInWithGoogle();
+      }
+    },
+    child: Image.asset(
+      imageaddress,
+      height: 50,
+      width: 50,
+    ),
+    style: TextButton.styleFrom(
+        backgroundColor: Colors.transparent,
+        minimumSize: Size.zero,
+        padding: EdgeInsets.zero,
+        tapTargetSize: MaterialTapTargetSize.shrinkWrap),
+  );
+}
+
+Future<UserCredential> signInWithGoogle() async {
+  final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+  final GoogleSignInAuthentication googleAuth =
+      await googleUser!.authentication;
+  final OAuthCredential credential = GoogleAuthProvider.credential(
+    accessToken: googleAuth.accessToken,
+    idToken: googleAuth.idToken,
+  );
+  return await FirebaseAuth.instance.signInWithCredential(credential);
 }
