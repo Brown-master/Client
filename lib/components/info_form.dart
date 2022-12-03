@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:ui_repository/components/current_position.dart';
+import 'home_form.dart';
 
 class InfoForm extends StatefulWidget {
   const InfoForm({Key? key}) : super(key: key);
@@ -20,6 +21,7 @@ class _InfoFormState extends State<InfoForm> {
 
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context)!.settings.arguments as AccidentInfo;
     return Column(
       children: [
         FutureBuilder<Position>(
@@ -43,7 +45,10 @@ class _InfoFormState extends State<InfoForm> {
         SizedBox(
           height: 10,
         ),
-        Text('상세사고정보 출력단'),
+        Text('userID: ${args.userId}'),
+        Text('id: ${args.id}'),
+        Text('title: ${args.title}'),
+        Text('completed: ${args.completed}'),
         SizedBox(
           height: 10,
         ),
