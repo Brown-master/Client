@@ -5,7 +5,6 @@ import 'package:ui_repository/pages/login_page.dart';
 import 'package:ui_repository/pages/accident_info_page.dart';
 import 'package:ui_repository/pages/tow_history_page.dart';
 import 'package:ui_repository/pages/map_page.dart';
-
 import 'init.dart';
 
 void main() {
@@ -35,7 +34,7 @@ class MyApp extends StatelessWidget {
       ),
 
       /// 화면이동을 위해 route를 사용
-      initialRoute: "/accident",
+      initialRoute: "/init",
       // 초기 경로 설정
       routes: {
         // 경로 목록
