@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -21,6 +22,8 @@ class _HistoryPageState extends State<HistoryPage> {
   }
 
   Future fetchAccident() async {
+    final user = await FirebaseAuth.instance.currentUser;
+    print(user?.uid);
     final response = await http.get(historyurl);
 
     var list = [];
@@ -57,27 +60,37 @@ class _HistoryPageState extends State<HistoryPage> {
             child: Scrollbar(
               thickness: 5.0, // 스크롤 너비
               radius: Radius.circular(8.0), // 스크롤 라운딩
-              isAlwaysShown: true, // 항상 보이기 여부
               child: new ListView.builder(
-                  itemCount: data == null ? 0 : data.length,
+                  itemCount: data.isEmpty ? 1 : data.length,
                   itemBuilder: (context, index) {
-                    return Card(
-                        margin: EdgeInsets.all(10),
-                        color: Colors.white,
-                        child: Column(
-                          children: [
-                            SizedBox(
-                              height: 50,
-                            ),
-                            Text('userId: ${data[index]['userId'].toString()}'),
-                            Text('id: ${data[index]['id'].toString()}'),
-                            Text('title: ${data[index]['title']}'),
-                            Text('completed: ${data[index]['completed'].toString()}'),
-                            SizedBox(
-                              height: 50,
-                            )
-                          ],
-                        ));
+                    if(data.isNotEmpty) {
+                      return Card(
+                          margin: EdgeInsets.all(10),
+                          color: Colors.white,
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                height: 50,
+                              ),
+                              Text('userId: ${data[index]['userId'].toString()}'),
+                              Text('id: ${data[index]['id'].toString()}'),
+                              Text('title: ${data[index]['title']}'),
+                              Text('completed: ${data[index]['completed'].toString()}'),
+                              SizedBox(
+                                height: 50,
+                              )
+                            ],
+                          ));
+                    } else {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          SizedBox(height: 300),
+                          Text('견인 기록 없음'),
+                        ],
+                      );
+                    }
+
                   }),
             ),
           )),
