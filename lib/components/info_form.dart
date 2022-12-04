@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:ui_repository/components/current_position.dart';
 import 'home_form.dart';
 
 class InfoForm extends StatefulWidget {
@@ -19,6 +18,13 @@ class _InfoFormState extends State<InfoForm> {
     position = getCurrentLocation();
   }
 
+  Future<Position> getCurrentLocation() async {
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+
+    return position;
+  }
+
   @override
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)!.settings.arguments as AccidentInfo;
@@ -32,8 +38,8 @@ class _InfoFormState extends State<InfoForm> {
                   onPressed: () {
                     Navigator.pushNamed(context, '/map',
                         arguments: CurrentPositions(
-                            latitude: snapshot.data!.latitude,
-                            longtitude: snapshot.data!.longitude));
+                            latitude: args.latitude,
+                            longtitude: args.longitude));
                   },
                   child: Text('지도'));
             } else if (snapshot.hasError) {
@@ -45,10 +51,7 @@ class _InfoFormState extends State<InfoForm> {
         SizedBox(
           height: 10,
         ),
-        Text('userID: ${args.userId}'),
-        Text('id: ${args.id}'),
-        Text('title: ${args.title}'),
-        Text('completed: ${args.completed}'),
+        Text('accidentID: ${args.accident_id}'),
         SizedBox(
           height: 10,
         ),
