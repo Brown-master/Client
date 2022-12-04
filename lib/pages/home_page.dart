@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ui_repository/components/logo_form.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 import 'login_page.dart';
 
 class HomePage extends StatelessWidget {
@@ -88,6 +87,7 @@ class HomePage extends StatelessWidget {
               title: Column(
                 children: [
                   Text("이름: ${snapshot.data!.displayName}"),
+                  Text('전화번호: ${snapshot.data!.phoneNumber}'),
                 ],
               ),
               //
