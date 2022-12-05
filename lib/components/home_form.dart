@@ -43,11 +43,9 @@ class _HomeFormState extends State<HomeForm> {
     //    .get(Uri.parse('${accidenturl}latitude=$lat&longitude=$lon'));
 
     final response = await http.get(historyurl);
-    print('${lat}');
 
     var list = [];
     if (response.statusCode == 200) {
-      print('yes');
       String responseBody = utf8.decode(response.bodyBytes);
       list = jsonDecode(responseBody);
     } else {
@@ -55,6 +53,7 @@ class _HomeFormState extends State<HomeForm> {
     }
     setState(() {
       data = list;
+      _events.add(data);
     });
 
     yield* Stream.periodic(Duration(seconds: 5), (_) {
@@ -94,7 +93,7 @@ class _HomeFormState extends State<HomeForm> {
           thickness: 5.0, // 스크롤 너비
           radius: Radius.circular(8.0), // 스크롤 라운딩
           child: StreamBuilder(
-              stream: address,
+              stream: fetchAccident(lat: lat, lon: lon),
               builder: (context, AsyncSnapshot snapshot) {
                 return ListView.builder(
                     itemCount: data.isEmpty ? 1 : data.length,
