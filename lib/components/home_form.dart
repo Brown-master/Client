@@ -26,7 +26,7 @@ class _HomeFormState extends State<HomeForm> {
     getCurrentLocation();
   }
 
-  Future<void> getCurrentLocation() async {
+  Stream<void> getCurrentLocation() async* {
     Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
     //lat = position.latitude;
@@ -84,9 +84,9 @@ class _HomeFormState extends State<HomeForm> {
         child: Scrollbar(
           thickness: 5.0, // 스크롤 너비
           radius: Radius.circular(8.0), // 스크롤 라운딩
-          child: FutureBuilder<Accident>(
-              future: address,
-              builder: (context, snapshot) {
+          child: StreamBuilder<Accident>(
+              stream: address,
+              builder: (context, AsyncSnapshot<Accident> snapshot) {
                 return ListView.builder(
                     itemCount: data.isEmpty ? 1 : data.length,
                     itemBuilder: (context, index) {

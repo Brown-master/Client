@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:http/http.dart';
 import 'home_form.dart';
 
 class InfoForm extends StatefulWidget {
@@ -10,19 +11,18 @@ class InfoForm extends StatefulWidget {
 }
 
 class _InfoFormState extends State<InfoForm> {
-  late Future<Position> position;
 
   @override
   void initState() {
     super.initState();
-    position = getCurrentLocation();
+    getCurrentLocation();
   }
 
-  Future<Position> getCurrentLocation() async {
+  Stream<Position> getCurrentLocation() async* {
     Position position = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
 
-    return position;
+    yield position;
   }
 
   @override
@@ -30,9 +30,9 @@ class _InfoFormState extends State<InfoForm> {
     final args = ModalRoute.of(context)!.settings.arguments as AccidentInfo;
     return Column(
       children: [
-        FutureBuilder<Position>(
-          future: position,
-          builder: (context, snapshot) {
+        StreamBuilder<Position>(
+          stream: getCurrentLocation(),
+          builder: (context, AsyncSnapshot<Position?> snapshot) {
             if (snapshot.hasData) {
               return OutlinedButton(
                   onPressed: () {
