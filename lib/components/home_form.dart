@@ -18,12 +18,13 @@ class _HomeFormState extends State<HomeForm> {
   var lat;
   var lon;
   var address;
+  StreamController<dynamic> _events = new StreamController<dynamic>();
 
   @override
   void initState() {
     super.initState();
-    address = getAddress();
     getCurrentLocation();
+    address = getAddress();
   }
 
   Stream<void> getCurrentLocation() async* {
@@ -34,15 +35,19 @@ class _HomeFormState extends State<HomeForm> {
     lat = 37.5323;
     lon = 127.1938;
 
-    fetchAccident(lat: position.latitude, lon: position.longitude);
+    fetchAccident(lat: lat, lon: lon);
   }
 
-  Future fetchAccident({required lat, required lon}) async {
-    final response = await http
-        .get(Uri.parse('${accidenturl}latitude=$lat&longitude=$lon'));
+  Stream<http.Response> fetchAccident({required lat, required lon}) async* {
+    //final response = await http
+    //    .get(Uri.parse('${accidenturl}latitude=$lat&longitude=$lon'));
+
+    final response = await http.get(historyurl);
+    print('${lat}');
 
     var list = [];
     if (response.statusCode == 200) {
+      print('yes');
       String responseBody = utf8.decode(response.bodyBytes);
       list = jsonDecode(responseBody);
     } else {
@@ -51,17 +56,21 @@ class _HomeFormState extends State<HomeForm> {
     setState(() {
       data = list;
     });
+
+    yield* Stream.periodic(Duration(seconds: 5), (_) {
+      return http.get(historyurl);
+    }).asyncMap((event) async => await event);
   }
 
-  Future<Accident> getAddress() async {
+  Stream<Accident> getAddress() async* {
     final response = await http.get(Uri.parse(
         'https://maps.googleapis.com/maps/api/geocode/json?latlng=$lat,$lon&key=AIzaSyCxeCqslVuJkR-gmT2oObsMdgrr6vfdYsI&language='
         'ko'
         ''));
     if (response.statusCode == 200) {
-      return Accident.fromJson(json.decode(response.body));
+      yield Accident.fromJson(json.decode(response.body));
     } else {
-      throw Exception('Failed to load Accident');
+      throw Exception('Failed to load address');
     }
   }
 
@@ -84,9 +93,9 @@ class _HomeFormState extends State<HomeForm> {
         child: Scrollbar(
           thickness: 5.0, // 스크롤 너비
           radius: Radius.circular(8.0), // 스크롤 라운딩
-          child: StreamBuilder<Accident>(
+          child: StreamBuilder(
               stream: address,
-              builder: (context, AsyncSnapshot<Accident> snapshot) {
+              builder: (context, AsyncSnapshot snapshot) {
                 return ListView.builder(
                     itemCount: data.isEmpty ? 1 : data.length,
                     itemBuilder: (context, index) {
@@ -99,35 +108,47 @@ class _HomeFormState extends State<HomeForm> {
                                 SizedBox(
                                   height: 50,
                                 ),
-                                Text('사고 내용: ${data[index]['message']}'),
-                                Text('도로명: ${data[index]['road_name']}'),
-                                Text('도로번호: ${data[index]['road_direction']}'),
-                                Text(
-                                    '주소명: ${snapshot.data?.results?[0].formattedAddress}'),
-                                Text('사고 시각: ${data[index]['date_time']}'),
+                                //Text('사고 내용: ${data[index]['message']}'),
+                                //Text('도로명: ${data[index]['road_name']}'),
+                                //Text('도로번호: ${data[index]['road_direction']}'),
+                                //Text(
+                                //    '주소명: ${snapshot.data?.results?[0].formattedAddress}'),
+                                //Text('사고 시각: ${data[index]['date_time']}'),
+                                Text('userId: ${data[index]['userId'].toString()}'),
+                                Text('id: ${data[index]['id'].toString()}'),
+                                Text('title: ${data[index]['title']}'),
+                                Text('completed: ${data[index]['completed'].toString()}'),
                                 SizedBox(
                                   height: 20,
                                 ),
                                 TextButton(
                                   onPressed: () async {
                                     Navigator.pushNamed(context, '/info',
-                                        arguments: AccidentInfo(
-                                          accident_id: data[index]
-                                              ['accident_id'],
-                                          message: data[index]['message'],
-                                          road_name: data[index]['road_name'],
-                                          road_num: data[index]['road_num'],
-                                          road_direction: data[index]
-                                              ['road_direction'],
-                                          latitude: data[index]['latitude'],
-                                          longitude: data[index]['longitude'],
-                                          date_time: data[index]['date_time'],
+                                        //arguments: AccidentInfo(
+                                        //  accident_id: data[index]
+                                        //      ['accident_id'],
+                                        //  message: data[index]['message'],
+                                        //  road_name: data[index]['road_name'],
+                                        //  road_num: data[index]['road_num'],
+                                        //  road_direction: data[index]
+                                        //      ['road_direction'],
+                                        //  latitude: data[index]['latitude'],
+                                        //  longitude: data[index]['longitude'],
+                                        //  date_time: data[index]['date_time'],
+                                      arguments: Test(
+                                        userId: data[index]['userId'],
+                                        id: data[index]['id'],
+                                        title: data[index]['title'],
+                                        completed: data[index]['completed']
                                         ));
 
-                                    final delete = await http.delete(Uri.parse(
-                                        '${accidenturl}/${data[index]['accident_id']}'));
-                                    final get = await http.get(Uri.parse(
-                                        '${accidenturl}${lat}&${lon}'));
+                                    //final delete = await http.delete(Uri.parse(
+                                    //    '${accidenturl}/${data[index]['accident_id']}'));
+                                    //final get = await http.get(Uri.parse(
+                                    //    '${accidenturl}${lat}&${lon}'));
+
+                                    final delete = await http.delete(Uri.parse('http://localhost:8000/posts/${data[index]['id']}'));
+                                    final get = await http.get(Uri.parse('http://localhost:8000/posts'));
 
                                     var list = [];
                                     if (get.statusCode == 200) {
@@ -154,10 +175,13 @@ class _HomeFormState extends State<HomeForm> {
                                 ),
                                 TextButton(
                                   onPressed: () async {
-                                    final delete = await http.delete(Uri.parse(
-                                        '${accidenturl}/${data[index]['accident_id']}'));
-                                    final get = await http.get(Uri.parse(
-                                        '${accidenturl}${lat}&${lon}'));
+                                    //final delete = await http.delete(Uri.parse(
+                                    //    '${accidenturl}/${data[index]['accident_id']}'));
+                                    //final get = await http.get(Uri.parse(
+                                    //    '${accidenturl}${lat}&${lon}'));
+
+                                    final delete = await http.delete(Uri.parse('http://localhost:8000/posts/${data[index]['id']}'));
+                                    final get = await http.get(Uri.parse('http://localhost:8000/posts'));
 
                                     var list = [];
                                     if (get.statusCode == 200) {
@@ -220,4 +244,13 @@ class AccidentInfo {
       required this.latitude,
       required this.longitude,
       required this.date_time});
+}
+
+class Test {
+  final int userId;
+  final int id;
+  final String title;
+  final bool completed;
+
+  Test({required this.userId, required this.id, required this.title, required this.completed});
 }

@@ -22,8 +22,6 @@ class _HistoryPageState extends State<HistoryPage> {
   }
 
   Future fetchAccident() async {
-    final user = await FirebaseAuth.instance.currentUser;
-    print(user?.uid);
     final response = await http.get(historyurl);
 
     var list = [];
@@ -41,6 +39,8 @@ class _HistoryPageState extends State<HistoryPage> {
 
   @override
   Widget build(BuildContext context) {
+    //final user = FirebaseAuth.instance.currentUser;
+    //print('#############${user?.uid}');
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
