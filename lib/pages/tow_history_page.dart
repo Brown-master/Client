@@ -1,3 +1,5 @@
+// 견인 기록 확인 페이지
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -14,6 +16,7 @@ class HistoryPage extends StatefulWidget {
 
 class _HistoryPageState extends State<HistoryPage> {
   var data = [];
+  final user = FirebaseAuth.instance.currentUser;
 
   @override
   void initState() {
@@ -22,7 +25,8 @@ class _HistoryPageState extends State<HistoryPage> {
   }
 
   Future fetchAccident() async {
-    final response = await http.get(historyurl);
+    final response =
+        await http.get(Uri.parse('${historyurl}records?user_id=${user?.uid}'));
 
     var list = [];
     if (response.statusCode == 200) {
@@ -39,8 +43,6 @@ class _HistoryPageState extends State<HistoryPage> {
 
   @override
   Widget build(BuildContext context) {
-    //final user = FirebaseAuth.instance.currentUser;
-    //print('#############${user?.uid}');
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
@@ -57,42 +59,44 @@ class _HistoryPageState extends State<HistoryPage> {
           ),
           body: Padding(
             padding: const EdgeInsets.all(5.0),
-            child: Scrollbar(
-              thickness: 5.0, // 스크롤 너비
-              radius: Radius.circular(8.0), // 스크롤 라운딩
-              child: new ListView.builder(
-                  itemCount: data.isEmpty ? 1 : data.length,
-                  itemBuilder: (context, index) {
-                    if(data.isNotEmpty) {
-                      return Card(
-                          margin: EdgeInsets.all(10),
-                          color: Colors.white,
-                          child: Column(
-                            children: [
-                              SizedBox(
-                                height: 50,
-                              ),
-                              Text('userId: ${data[index]['userId'].toString()}'),
-                              Text('id: ${data[index]['id'].toString()}'),
-                              Text('title: ${data[index]['title']}'),
-                              Text('completed: ${data[index]['completed'].toString()}'),
-                              SizedBox(
-                                height: 50,
-                              )
-                            ],
-                          ));
-                    } else {
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SizedBox(height: 300),
-                          Text('견인 기록 없음'),
-                        ],
-                      );
-                    }
-
-                  }),
-            ),
+            child: new ListView.builder(
+                itemCount: data.isEmpty ? 1 : data.length,
+                itemBuilder: (context, index) {
+                  if (data.isNotEmpty) {
+                    return Card(
+                        margin: EdgeInsets.all(10),
+                        color: Colors.white,
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text('${index+1}번째 사고 기록'),
+                            SizedBox(
+                              height: 40,
+                            ),
+                            Text(
+                                '사고 내용: ${data[index]['accident']['message']}'),
+                            Text(
+                                '도로명: ${data[index]['accident']['road_name']}'),
+                            Text(
+                                '도로번호: ${data[index]['accident']['road_direction']}'),
+                            Text('사고 시각: ${data[index]['date_time']}'),
+                            SizedBox(
+                              height: 50,
+                            )
+                          ],
+                        ));
+                  } else {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(height: 300),
+                        Text('견인 기록 없음'),
+                      ],
+                    );
+                  }
+                }),
           )),
     );
   }

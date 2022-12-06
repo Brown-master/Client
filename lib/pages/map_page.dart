@@ -1,3 +1,5 @@
+// 구글 지도 출력 페이지
+
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:ui_repository/components/info_form.dart';
@@ -34,7 +36,7 @@ class _MapPageState extends State<MapPage> {
           },
           initialCameraPosition: CameraPosition(
             target: LatLng(args.latitude, args.longtitude),
-            zoom: 18.0,
+            zoom: 12.0,
           ),
           myLocationEnabled: true,
           myLocationButtonEnabled: true,

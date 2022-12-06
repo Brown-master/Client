@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:ui_repository/components/home_form.dart';
 import 'package:ui_repository/pages/home_page.dart';
 import 'package:ui_repository/pages/login_page.dart';
@@ -8,6 +9,10 @@ import 'package:ui_repository/pages/map_page.dart';
 import 'init.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   runApp(const MyApp());
 }
 
@@ -22,7 +27,6 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       // 테마설정
       theme: ThemeData(
-        /// 전체 TextButton 테마를 지정하면 모든 TextButton에 테마가 적용된다.
         textButtonTheme: TextButtonThemeData(
             style: TextButton.styleFrom(
                 backgroundColor: Colors.yellow,
@@ -33,11 +37,8 @@ class MyApp extends StatelessWidget {
                 minimumSize: Size(400, 60))),
       ),
 
-      /// 화면이동을 위해 route를 사용
       initialRoute: "/init",
-      // 초기 경로 설정
       routes: {
-        // 경로 목록
         "/login": (context) => LoginPage(),
         "/home": (context) => HomePage(),
         "/info": (context) => InfoPage(),

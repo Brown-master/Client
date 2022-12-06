@@ -1,3 +1,5 @@
+// 상세 사고 정보 페이지 Scaffold
+
 import 'package:flutter/material.dart';
 import 'package:ui_repository/components/info_form.dart';
 import 'package:ui_repository/components/logo_form.dart';

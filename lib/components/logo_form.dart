@@ -1,9 +1,10 @@
+// 로고 및 페이지 타이틀 생성 Form
+
 import 'package:flutter/material.dart';
 
 class Logo extends StatelessWidget {
   final String title;
 
-  //const Logo({Key? key}) : super(key: key);
   const Logo(this.title);
 
   @override

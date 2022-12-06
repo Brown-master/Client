@@ -1,2 +1,4 @@
-String accidenturl = 'http://192.168.35.141:8080/accident/search?';
-Uri historyurl = Uri.parse('http://localhost:8000/posts');
+// 서버와 통신할 Url 저장
+
+Uri accidenturl = Uri.parse('https://931e-202-31-201-218.jp.ngrok.io/accident/');
+Uri historyurl = Uri.parse('https://931e-202-31-201-218.jp.ngrok.io/match/');

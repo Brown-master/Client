@@ -1,3 +1,5 @@
+// 메인 페이지 Scaffold
+
 import 'package:flutter/material.dart';
 import 'package:ui_repository/components/logo_form.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -21,6 +23,7 @@ class HomePage extends StatelessWidget {
                       backgroundColor: Colors.transparent,
                       elevation: 0.0,
                     ),
+                    // 사이드 메뉴
                     drawer: Drawer(
                       child: ListView(
                         padding: EdgeInsets.zero,
@@ -70,6 +73,7 @@ class HomePage extends StatelessWidget {
         });
   }
 
+  // 내 정보를 팝업으로 출력할 함수
   Future<dynamic> _showUserInfo(
       BuildContext context, AsyncSnapshot<User?> snapshot) {
     return showDialog(
@@ -85,9 +89,10 @@ class HomePage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20.0)),
               //Dialog Main Title
               title: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text("이름: ${snapshot.data!.displayName}"),
-                  Text('전화번호: ${snapshot.data!.phoneNumber}'),
+                  Text('이메일: ${snapshot.data!.email}', style: TextStyle(fontSize: 15),),
                 ],
               ),
               //

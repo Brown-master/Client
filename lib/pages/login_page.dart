@@ -1,3 +1,5 @@
+// 초기 로그인 정보가 없을 때 로그인 기능 제공 페이지
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -44,6 +46,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 }
 
+// 위치 권한 얻기
 Future<bool> location_permission() async {
   Map<Permission, PermissionStatus> status =
       await [Permission.location].request(); // [] 권한배열에 권한을 작성
@@ -55,6 +58,7 @@ Future<bool> location_permission() async {
   }
 }
 
+// 로그인 버튼 생성
 TextButton makeSignInButton(String imageaddress) {
   return TextButton(
     onPressed: () {
@@ -75,6 +79,7 @@ TextButton makeSignInButton(String imageaddress) {
   );
 }
 
+// 구글 로그인 함수
 Future<UserCredential> signInWithGoogle() async {
   final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
   final GoogleSignInAuthentication googleAuth =
