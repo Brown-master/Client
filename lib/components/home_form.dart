@@ -177,8 +177,8 @@ class _HomeFormState extends State<HomeForm> {
                       // 사고 현황이 없을 때 출력
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+                          SizedBox(height: 300),
                           Text('사고 현황 없음'),
                         ],
                       );

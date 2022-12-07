@@ -90,8 +90,8 @@ class _HistoryPageState extends State<HistoryPage> {
                   } else {
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        SizedBox(height: 300),
                         Text('견인 기록 없음'),
                       ],
                     );
