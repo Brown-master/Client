@@ -46,6 +46,7 @@ class _InfoFormState extends State<InfoForm> {
     if (response.statusCode == 200) {
       setState(() {
         address = json.decode(response.body)['results'][0]['formatted_address'];
+        address = address.substring(5);
       });
       return address;
     } else {
@@ -87,7 +88,7 @@ class _InfoFormState extends State<InfoForm> {
           height: 10,
         ),
         Text('사고 정보: ${args.message}'),
-        Text('사고지 주소 : ${address.substring(5)}'),
+        Text('사고지 주소 : ${address}'),
         SizedBox(
           height: 10,
         ),
