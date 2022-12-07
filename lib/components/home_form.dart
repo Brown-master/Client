@@ -90,7 +90,8 @@ class _HomeFormState extends State<HomeForm> {
                               ),
                               Text('사고 내용: ${data[index]['message']}'),
                               Text('도로명: ${data[index]['road_name']}'),
-                              Text('도로번호: ${data[index]['road_direction']}'),
+                              Text('도로 번호: ${data[index]['road_num']}'),
+                              Text('도로 방향: ${data[index]['road_direction']}'),
                               Text('사고 시각: ${data[index]['date_time']}'),
                               SizedBox(
                                 height: 20,
@@ -176,8 +177,8 @@ class _HomeFormState extends State<HomeForm> {
                       // 사고 현황이 없을 때 출력
                       return Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          SizedBox(height: 300),
                           Text('사고 현황 없음'),
                         ],
                       );

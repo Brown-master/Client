@@ -80,7 +80,7 @@ class _HistoryPageState extends State<HistoryPage> {
                             Text(
                                 '도로명: ${data[index]['accident']['road_name']}'),
                             Text(
-                                '도로번호: ${data[index]['accident']['road_direction']}'),
+                                '도로 번호: ${data[index]['accident']['road_num']}'),
                             Text('사고 시각: ${data[index]['date_time']}'),
                             SizedBox(
                               height: 50,
@@ -90,8 +90,8 @@ class _HistoryPageState extends State<HistoryPage> {
                   } else {
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SizedBox(height: 300),
                         Text('견인 기록 없음'),
                       ],
                     );
