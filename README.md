@@ -29,16 +29,16 @@
 > geocoding 2.0.5
 
 ## Dependencies
->'flutter_svg: ^1.0.0'  
->'firebase_core:'  
->'cloud_firestore:'  
->'geolocator:'  
->'google_maps_flutter:'  
->'google_maps_flutter_web:'  
->'permission_handler:'  
->'firebase_auth:'  
->'http:'  
->'google_sign_in:'  
+>flutter_svg: ^1.0.0  
+>firebase_core:  
+>cloud_firestore:  
+>geolocator:  
+>google_maps_flutter:  
+>google_maps_flutter_web:  
+>permission_handler:  
+>firebase_auth:  
+>http:  
+>google_sign_in:  
 
 ## Files
 `home_form.dart`  사고 현황 확인 페이지
