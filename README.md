@@ -40,12 +40,13 @@
 >firebase_auth:
 >http:
 >google_sign_in:
+
 ## Files
 `home_form.dart`  사고 현황 확인 페이지
 
 `info_form.dart`  상세 사고 정보 페이지
 
-`logo_form.dart`  로고 및 페에지 타이틀 생성 Form
+`logo_form.dart`  로고 및 페이지 타이틀 생성 Form
 
 `url.dart`  서버와 통신할 Url
 
@@ -59,9 +60,9 @@
 
 `tow_history-page.dart`  견인 기록 확인 페이지
 
-`firebase_options.dart`  
+`firebase_options.dart`  파이어 베이스 옵션 파일
 
-`init.dart`  
+`init.dart`  로그인 상태 체크 페이지
 
-`main.dart`  
+`main.dart`  초기 화면을 init.dart로 시작
 
