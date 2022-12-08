@@ -1,16 +1,67 @@
-# ui_repository
+# 2022-Open Source Project
 
-Main UI
+# 견인차량들 사이의 간의 경쟁에서 나오는 불법행위를 줄이기 위한 어플리케이션
 
-## Getting Started
+##### Project name : 견人
 
-This project is a starting point for a Flutter application.
+#### Team name : Brown Master
 
-A few resources to get you started if this is your first Flutter project:
+#### Project execution period : 2022.09.29~2022.12.08
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+#### GIT HUB URL :  [GIT HUB](https://github.com/Brown-master/Client)
+##
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Decritpion
+견人은 견인 차량 운전자들을 위한 어플리케이션으로 도로에서 발생하는 사고를 실시간으로 분석하고 사고메시지로 알려준다.   
+사고 현장에  도착하기 전 견인차량들 간의 우선순위를 두어서 견인 차량들간의 2차사고나 불법행위를 예방한다.  
+주요 기능은 먼저 어플리케이션의 사용자가 앱으로부터 사고정보를 받아온다.   
+사용자들에게 수락 거절 버튼을 이용하여 우선 순위를 제공한다. 수락을 할 시에는 사고 위치 정보와 현재 위치정보를 알려주며   
+거절 시에는 거절한 사고를 제외하고 다른 사고들을 보여준다. 그리고 사용자가 견인기록을 조회하고 싶을 시에는 조회할 수 있다.  
+이러한 기능들을 사용해서 견인 차량들 사이의 우선 순위, 사고정보와 견인 기록 조회를 할 수 있다.
+## UI흐름도
+![kk](https://user-images.githubusercontent.com/101470043/206215208-4544dac9-16f8-4f3f-91f9-cde3228098e8.png)
+
+ ## Language
+>Dart version 2.18.0
+## Open Source, Open API
+>Flutter version 3.3.0
+>Google login
+> geocoding 2.0.5
+
+## Dependencies
+
+>flutter_svg: ^1.0.0
+>firebase_core:
+>cloud_firestore:
+>geolocator:
+>google_maps_flutter:
+>google_maps_flutter_web:
+>permission_handler:
+>firebase_auth:
+>http:
+>google_sign_in:
+## Files
+`home_form.dart`  사고 현황 확인 페이지
+
+`info_form.dart`  상세 사고 정보 페이지
+
+`logo_form.dart`  로고 및 페에지 타이틀 생성 Form
+
+`url.dart`  서버와 통신할 Url
+
+`accident_info_page.dart`  상세 사고 정보 페이지 Scaffold
+
+`home_page.dart`  메인 페이지 Scaffold
+
+`login_page.dart`  로그인 정보가 없을 때 로그인 기능 제공 페이지
+
+`map_page.dart`  구글 지도 출력 페이지
+
+`tow_history-page.dart`  견인 기록 확인 페이지
+
+`firebase_options.dart`  
+
+`init.dart`  
+
+`main.dart`  
+
