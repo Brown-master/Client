@@ -30,9 +30,11 @@ class _MapPageState extends State<MapPage> {
         ),
         body: GoogleMap(
           onMapCreated: (controller) {
-            setState(() {
-              _controller = controller;
-            });
+            if (this.mounted) {
+              setState(() {
+                _controller = controller;
+              });
+            }
           },
           initialCameraPosition: CameraPosition(
             target: LatLng(args.latitude, args.longtitude),

@@ -44,10 +44,12 @@ class _InfoFormState extends State<InfoForm> {
         'ko'
         ''));
     if (response.statusCode == 200) {
-      setState(() {
-        address = json.decode(response.body)['results'][0]['formatted_address'];
-        address = address.substring(5);
-      });
+      if (this.mounted) {
+        setState(() {
+          address = json.decode(response.body)['results'][0]['formatted_address'];
+          address = address.substring(5);
+        });
+      }
       return address;
     } else {
       throw Exception('Failed to load address');

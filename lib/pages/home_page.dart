@@ -48,7 +48,48 @@ class HomePage extends StatelessWidget {
                             leading: Icon(Icons.logout, color: Colors.black),
                             title: Text('로그아웃'),
                             onTap: () {
-                              FirebaseAuth.instance.signOut();
+                              showDialog(
+                                  context: context,
+                                  //barrierDismissible - Dialog를 제외한 다른 화면 터치 x
+                                  barrierDismissible: false,
+                                  builder: (BuildContext context) {
+                                    return WillPopScope(
+                                      onWillPop: () async => false,
+                                      child: AlertDialog(
+                                        // RoundedRectangleBorder - Dialog 화면 모서리 둥글게 조절
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(20.0)),
+                                        //Dialog Main Title
+                                        title: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+                                            Text("로그아웃 하시겠습니까?"),
+                                          ],
+                                        ),
+                                        //
+                                        content: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: <Widget>[
+                                            TextButton(
+                                              onPressed: () {
+                                                FirebaseAuth.instance.signOut();
+                                                Navigator.pop(context);
+                                              },
+                                              child: Text("예"),
+                                            ),
+                                            SizedBox(height: 10,),
+                                            TextButton(
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                              },
+                                              child: Text("아니오"),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    );
+                                  });
                             },
                           ),
                         ],

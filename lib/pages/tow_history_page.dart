@@ -36,9 +36,11 @@ class _HistoryPageState extends State<HistoryPage> {
       throw Exception('Failed to load Accident');
     }
 
-    setState(() {
-      data = list;
-    });
+    if (this.mounted) {
+      setState(() {
+        data = list;
+      });
+    }
   }
 
   @override

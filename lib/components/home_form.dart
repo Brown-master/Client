@@ -31,28 +31,30 @@ class _HomeFormState extends State<HomeForm> {
     } else {
       duration = Duration(seconds: 5);
     }
-      // duration만큼 delay된 polling 수행
-      Future.delayed(duration, () async {
-        Position position = await Geolocator.getCurrentPosition(
-            desiredAccuracy: LocationAccuracy.high);
-        lat = position.latitude;
-        lon = position.longitude;
+    // duration만큼 delay된 polling 수행
+    Future.delayed(duration, () async {
+      Position position = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.high);
+      lat = position.latitude;
+      lon = position.longitude;
 
-        response = await http.get(Uri.parse(
-            '${accidenturl}search?latitude=$lat&longitude=$lon')); // 사고 현황 get
+      response = await http.get(Uri.parse(
+          '${accidenturl}search?latitude=$lat&longitude=$lon')); // 사고 현황 get
 
-        // statusCode 200이면 responseBody decode
-        var list = [];
-        if (response.statusCode == 200) {
-          String responseBody = utf8.decode(response.bodyBytes);
-          list = jsonDecode(responseBody);
-        } else {
-          throw Exception('Failed to load Accident');
-        }
+      // statusCode 200이면 responseBody decode
+      var list = [];
+      if (response.statusCode == 200) {
+        String responseBody = utf8.decode(response.bodyBytes);
+        list = jsonDecode(responseBody);
+      } else {
+        throw Exception('Failed to load Accident');
+      }
+      if (this.mounted) {
         setState(() {
           data = list;
         });
-      });
+      }
+    });
   }
 
   @override
@@ -156,10 +158,12 @@ class _HomeFormState extends State<HomeForm> {
                                     throw Exception('Failed to accept');
                                   }
 
-                                  setState(() {
-                                    data = list;
-                                    check = 0;
-                                  });
+                                  if (this.mounted) {
+                                    setState(() {
+                                      data = list;
+                                      check = 0;
+                                    });
+                                  }
                                 },
                                 child: Text('수락'),
                                 style: TextButton.styleFrom(
