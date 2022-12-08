@@ -29,7 +29,6 @@
 > geocoding 2.0.5
 
 ## Dependencies
-
 >'flutter_svg: ^1.0.0'
 >'firebase_core:'
 >'cloud_firestore:'
