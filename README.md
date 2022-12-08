@@ -8,7 +8,7 @@
 
 #### Project execution period : 2022.09.29~2022.12.08
 
-#### GIT LAB URL :  [GIT LAB](https://github.com/Brown-master/Client)
+#### GIT HUB URL :  [GIT HUB](https://github.com/Brown-master/Client)
 ##
 
 ## Decritpion
