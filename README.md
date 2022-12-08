@@ -1,4 +1,4 @@
-# 시연동영상 링크 https://youtu.be/TbmlQH5Tuvc
+시연동영상 링크 https://youtu.be/TbmlQH5Tuvc
 # 2022-Open Source Project
 
 # 견인차량들 사이의 간의 경쟁에서 나오는 불법행위를 줄이기 위한 어플리케이션
